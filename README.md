@@ -1,6 +1,8 @@
 # Predicción de abandono de clientes bancarios (Churn Analytics)
 
-> Caso de estudio de **análisis de negocio aplicado con ciencia de datos**: identificación temprana de clientes con riesgo de abandono para apoyar estrategias de retención en una institución bancaria.
+> **Caso de estudio didáctico** de análisis de negocio aplicado con ciencia de datos: identificación temprana de clientes con riesgo de abandono para apoyar estrategias de retención en una institución bancaria.
+>
+> Este repositorio documenta **metodología, herramientas, visualización y toma de decisiones** siguiendo buenas prácticas de la industria. El código fuente no se publica (ver [sección 7](#7-nota-sobre-el-código)).
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)]()
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikitlearn&logoColor=white)]()
@@ -40,15 +42,27 @@ Este proyecto responde esa pregunta con un **modelo predictivo de clasificación
 
 ---
 
-## 3. Metodología (visión general)
+## 3. Metodología y buenas prácticas
 
-El proyecto sigue un flujo de trabajo estándar de la industria para analítica predictiva:
+El proyecto sigue un flujo de trabajo estándar de la industria para analítica predictiva, con énfasis en **buenas prácticas de ciencia de datos aplicada a negocio**:
 
-1. **Comprensión del negocio y de los datos** — 10,000 registros de clientes con 13 características (saldo, antigüedad, productos contratados, actividad, geografía, demografía).
-2. **Preparación y calidad de datos** — tratamiento de valores ausentes, codificación de variables categóricas, escalado y partición estratificada en entrenamiento / validación / prueba, con controles explícitos contra la **fuga de información**.
-3. **Diagnóstico del desequilibrio de clases** — solo el 20 % de los clientes abandona; se demuestra por qué la exactitud es una métrica engañosa en este contexto.
-4. **Comparación de modelos y técnicas de balanceo** — regresión logística, árboles de decisión y bosques aleatorios, con pesos de clase y sobremuestreo; selección por F1 con AUC-ROC como complemento.
-5. **Evaluación final independiente** — el modelo seleccionado se evalúa una sola vez sobre datos nunca utilizados en entrenamiento ni selección, y se analizan sus errores en términos de negocio.
+1. **Comprensión del negocio y de los datos** — 10,000 registros de clientes con 13 características (saldo, antigüedad, productos contratados, actividad, geografía, demografía). Cada campo se contrasta con su diccionario de datos antes de usarse.
+2. **Preparación y calidad de datos** — tratamiento de valores ausentes, codificación de variables categóricas, escalado y partición estratificada en entrenamiento / validación / prueba, con controles explícitos contra la **fuga de información** (*data leakage*): todo estadístico de preprocesamiento se aprende únicamente del conjunto de entrenamiento.
+3. **Diagnóstico del desequilibrio de clases** — solo el 20 % de los clientes abandona; se demuestra con evidencia por qué la exactitud es una métrica engañosa en este contexto y se justifica la elección de F1 como métrica principal.
+4. **Comparación sistemática de modelos** — regresión logística, árboles de decisión y bosques aleatorios, con dos técnicas de balanceo (pesos de clase y sobremuestreo); selección por F1 de validación con AUC-ROC como complemento y análisis de sobreajuste.
+5. **Evaluación final independiente** — el modelo seleccionado se evalúa **una sola vez** sobre datos nunca utilizados en entrenamiento ni selección, y sus errores se traducen a consecuencias de negocio.
+
+> 📘 Detalle metodológico completo en [docs/metodologia.md](docs/metodologia.md).
+
+### Buenas prácticas aplicadas
+
+| Práctica | Cómo se aplicó |
+|---|---|
+| **Reproducibilidad** | Semillas fijas, particiones documentadas y verificación estructural de los datos antes de modelar. |
+| **Prevención de fuga de información** | Imputación, codificación y escalado ajustados solo con entrenamiento; prueba intacta hasta la evaluación final. |
+| **Selección honesta de métricas** | F1 como métrica principal por el desequilibrio de clases; AUC-ROC como complemento, no como sustituto. |
+| **Análisis de errores** | Matriz de confusión interpretada en términos de costos de negocio (falsas alarmas vs. abandonos no detectados). |
+| **Limitaciones explícitas** | Cada conclusión declara qué puede y qué no puede afirmarse a partir de los datos. |
 
 ---
 
@@ -66,9 +80,31 @@ Evaluación final sobre **2,000 clientes** nunca vistos por el modelo:
 - De cada 100 alertas generadas, **58 corresponden a abandonos reales**.
 - El análisis de errores cuantifica el costo de las falsas alarmas (contactos innecesarios) frente al costo de los abandonos no detectados, insumo directo para decidir el umbral de intervención.
 
+### Visualizaciones clave del análisis
+
+El proyecto utiliza visualización como herramienta de **toma de decisiones**, no solo de presentación:
+
+| Gráfica | Decisión que apoya |
+|---|---|
+| **Distribución de la variable objetivo** | Evidencia el desequilibrio 80/20 y justifica abandonar la exactitud como métrica de referencia. |
+| **Curva ROC** | Muestra la capacidad de discriminación del modelo a través de todos los umbrales posibles; permite comparar modelos sin fijar un punto de corte. |
+| **Matriz de confusión** | Traduce aciertos y errores a consecuencias operativas: falsas alarmas (costo de contacto) vs. abandonos no detectados (costo de pérdida). |
+| **Comparativa de modelos (F1 / AUC-ROC)** | Sustenta la selección del modelo final con evidencia cuantitativa sobre el mismo conjunto de validación. |
+| **Análisis de sobreajuste (entrenamiento vs. validación)** | Documenta la brecha de desempeño y orienta la confianza en la generalización del modelo. |
+
 ---
 
-## 5. Habilidades demostradas
+## 5. Herramientas utilizadas
+
+| Herramienta | Uso en el proyecto |
+|---|---|
+| **Python** | Lenguaje principal del análisis y el modelado. |
+| **Pandas / NumPy** | Minería, limpieza, transformación y validación de datos. |
+| **scikit-learn** | Modelado supervisado: regresión logística, árboles de decisión, bosques aleatorios, balanceo de clases, métricas y partición estratificada. |
+| **Matplotlib** | Visualizaciones para diagnóstico y toma de decisiones (distribuciones, curva ROC, matrices de confusión, comparativas). |
+| **Jupyter** | Documentación ejecutable del análisis, paso a paso, con hallazgos e interpretación en cada etapa. |
+
+## 6. Habilidades demostradas
 
 Este proyecto ejemplifica las competencias de un **Data Science / Business Analytics Analyst**:
 
@@ -78,11 +114,9 @@ Este proyecto ejemplifica las competencias de un **Data Science / Business Analy
 - **Evaluación rigurosa**: F1, precisión, recall, AUC-ROC, matriz de confusión y análisis de errores traducido a consecuencias de negocio.
 - **Comunicación de resultados**: hallazgos presentados de forma sistemática y comprensible para audiencias técnicas y no técnicas.
 
-**Stack técnico:** Python · Pandas · NumPy · scikit-learn · Matplotlib · Jupyter
-
 ---
 
-## 6. Nota sobre el código
+## 7. Nota sobre el código
 
 El código fuente y los datos no se publican en este repositorio: el proyecto se desarrolló como parte de un programa de formación y el objetivo de este espacio es **documentar el enfoque analítico, los resultados y su valor de negocio**. Con gusto puedo explicar la metodología y las decisiones técnicas en una entrevista o conversación técnica.
 
