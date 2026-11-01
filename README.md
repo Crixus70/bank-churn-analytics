@@ -2,7 +2,7 @@
 
 > **Caso de estudio didáctico** de análisis de negocio aplicado con ciencia de datos: identificación temprana de clientes con riesgo de abandono para apoyar estrategias de retención en una institución bancaria.
 >
-> Este repositorio documenta **metodología, herramientas, visualización y toma de decisiones** siguiendo buenas prácticas de la industria. El código fuente no se publica (ver [sección 7](#7-nota-sobre-el-código)).
+> Este repositorio documenta **metodología, herramientas, visualización y toma de decisiones** siguiendo buenas prácticas de la industria, e incluye una [sección didáctica](#5-qué-puede-hacer-un-banco-con-esta-analítica) sobre sus aplicaciones bancarias para público general. El código fuente no se publica (ver [sección 8](#8-nota-sobre-el-código)).
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)]()
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikitlearn&logoColor=white)]()
@@ -94,7 +94,36 @@ El proyecto utiliza visualización como herramienta de **toma de decisiones**, n
 
 ---
 
-## 5. Herramientas utilizadas
+## 5. ¿Qué puede hacer un banco con esta analítica?
+
+*Sección didáctica para público en general: cómo un caso de estudio como este se conecta con la operación real de una institución bancaria.*
+
+### Lo que los bancos ya hacen hoy con este tipo de modelos
+
+| Aplicación | Descripción para público general |
+|---|---|
+| **Retención de clientes** | Detectar a tiempo quién está por irse y ofrecerle atención personalizada, mejores condiciones o resolver el problema que lo aleja, antes de que cierre su cuenta. |
+| **Segmentación inteligente** | Agrupar clientes por comportamiento (no solo por saldo o edad) para comunicar lo relevante a cada grupo, en lugar de campañas masivas genéricas. |
+| **Asignación eficiente del presupuesto comercial** | Concentrar incentivos y promociones en los clientes donde realmente cambian la decisión, en lugar de ofrecer descuentos a quienes de todos modos se quedarían. |
+| **Medición de la salud de la cartera** | Convertir el abandono en un indicador monitoreable, con alertas tempranas por segmento, región o producto. |
+
+### Lo que un banco podría hacer a continuación (roadmap analítico)
+
+| Siguiente paso | Valor de negocio |
+|---|---|
+| **Scoring de riesgo de abandono mensual** | Pasar de un análisis único a un monitoreo continuo: cada cliente recibe una puntuación de riesgo que se actualiza con su actividad reciente. |
+| **Optimización del umbral por costo-beneficio** | Decidir con números cuántas falsas alarmas conviene tolerar según el costo de contactar vs. el valor de retener a cada segmento. |
+| **Modelos de recomendación** | No solo predecir quién se va, sino sugerir **qué ofrecerle**: el producto o beneficio con mayor probabilidad de retenerlo. |
+| **Analítica de causas (drivers de abandono)** | Identificar qué factores explican el riesgo (inactividad, comisiones, atención) para atacar la causa raíz, no solo el síntoma. |
+| **Experimentación controlada (A/B testing)** | Medir si las acciones de retención realmente funcionan, comparando grupos con y sin intervención — cerrando el ciclo entre predicción y rentabilidad. |
+
+### Por qué importa la parte humana
+
+Un modelo no retiene clientes: **las personas y las decisiones sí**. El valor de esta analítica está en darle al equipo de negocio información oportuna, priorizada y comprensible para actuar. Por eso este proyecto pone tanto énfasis en la interpretación de errores, las limitaciones y la comunicación clara como en las métricas técnicas.
+
+---
+
+## 6. Herramientas utilizadas
 
 | Herramienta | Uso en el proyecto |
 |---|---|
@@ -104,7 +133,7 @@ El proyecto utiliza visualización como herramienta de **toma de decisiones**, n
 | **Matplotlib** | Visualizaciones para diagnóstico y toma de decisiones (distribuciones, curva ROC, matrices de confusión, comparativas). |
 | **Jupyter** | Documentación ejecutable del análisis, paso a paso, con hallazgos e interpretación en cada etapa. |
 
-## 6. Habilidades demostradas
+## 7. Habilidades demostradas
 
 Este proyecto ejemplifica las competencias de un **Data Science / Business Analytics Analyst**:
 
@@ -116,9 +145,9 @@ Este proyecto ejemplifica las competencias de un **Data Science / Business Analy
 
 ---
 
-## 7. Nota sobre el código
+## 8. Nota sobre el código
 
-El código fuente y los datos no se publican en este repositorio: el proyecto se desarrolló como parte de un programa de formación y el objetivo de este espacio es **documentar el enfoque analítico, los resultados y su valor de negocio**. Con gusto puedo explicar la metodología y las decisiones técnicas en una entrevista o conversación técnica.
+El código fuente y los datos no se publican en este repositorio: el proyecto se desarrolló como parte de un programa de formación y el objetivo de este espacio es **documentar el enfoque analítico, los resultados y su valor de negocio** (ver [sección 1](#1-el-problema-de-negocio)). Con gusto puedo explicar la metodología y las decisiones técnicas en una entrevista o conversación técnica.
 
 ---
 
