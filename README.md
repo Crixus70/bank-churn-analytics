@@ -33,6 +33,8 @@ Este proyecto responde esa pregunta con un **modelo predictivo de clasificación
 
 ### Impacto medible del enfoque analítico
 
+![Detección temprana de clientes en riesgo de abandono](docs/img/churn_deteccion.png)
+
 | Enfoque | Abandonos detectados (recall) | F1 |
 |---|---|---|
 | Modelo básico sin corrección | 20.6 % | 0.31 |
