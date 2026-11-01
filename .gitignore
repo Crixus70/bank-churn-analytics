@@ -1,0 +1,16 @@
+# Código fuente y datos: no se publican (ver README, sección 6)
+notebooks/
+data/
+*.ipynb
+*.csv
+*.pkl
+*.joblib
+
+# Entornos y sistema
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
